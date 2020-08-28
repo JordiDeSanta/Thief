@@ -1,13 +1,23 @@
 #include <iostream>
-#include <string>
 
-int main() 
+
+void Intro()
 {
     // Intro
     std::cout << "You're a thief trying steal a house\n";
     std::cout << "Desactive the alarm or be exposed and enjailed\n";
     std::cout << "Discover the 3 numbers key..\n\n" << "Hints:\n";
-    
+};
+
+void Hints(int Mul, int Sum)
+{
+    // Print hints
+    std::cout << "+ The product of this 3 numbers is " << Mul << std::endl;
+    std::cout << "+ The sum of this 3 numbes is " << Sum << std::endl << std::endl;
+};
+
+void PlayGame()
+{
     // Declare correct key and empty input key
     const int RealKey[3] = {2, 2, 3};
     int Key[3];
@@ -17,9 +27,8 @@ int main()
     const int KeyMul = RealKey[0] * RealKey[1] * RealKey[2];
     int GuessSum, GuessMul; // Declaring guesses
 
-    // Print hints
-    std::cout << "+ The product of this 3 numbers is " << KeyMul << std::endl;
-    std::cout << "+ The sum of this 3 numbes is " << KeySum << std::endl << std::endl;
+    // Calling print hints method
+    Hints(KeyMul, KeySum);
 
     // For loop what contains user input for once digit of the password
     for (int i = 0; i < 3; i++)
@@ -36,11 +45,18 @@ int main()
     if(GuessSum == KeySum && GuessMul == KeyMul)
     {
         std::cout << "*deactivated alarm sound"; // You Win!
-        return 0;
+        return;
     }
     else
     {
         std::cout << "Police! hands up"; // Game Over
-        return 0;
+        return;
     };
+};
+
+int main() 
+{
+    Intro();
+    PlayGame();
+    return 0;
 };  
