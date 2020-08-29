@@ -16,8 +16,10 @@ void Hints(int Mul, int Sum)
     std::cout << "+ The sum of this 3 numbes is " << Sum << std::endl << std::endl;
 };
 
-void PlayGame()
+bool PlayGame()
 {
+    Intro();
+
     // Declare correct key and empty input key
     const int RealKey[3] = {2, 2, 3};
     int Key[3];
@@ -44,19 +46,26 @@ void PlayGame()
     // If the hints agree with the player reply
     if(GuessSum == KeySum && GuessMul == KeyMul)
     {
-        std::cout << "*deactivated alarm sound"; // You Win!
-        return;
+        std::cout << "\n*deactivated alarm sound\n\n"; // You Win!
+        return true;
     }
     else
     {
-        std::cout << "Police! hands up"; // Game Over
-        return;
+        std::cout << "\nPolice! hands up\n\n"; // Game Over
+        return false;
     };
 };
 
 int main() 
 {
-    Intro();
-    PlayGame();
+    bool bLevelCompleted = false;
+
+    while (!bLevelCompleted)
+    {
+        bLevelCompleted = PlayGame();
+        std::cin.clear(); // Clears any errors
+        std::cin.ignore(); // Discards the buffer
+    }
+  
     return 0;
 };  
